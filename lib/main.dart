@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.black,
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.example.app',
-                  tileBuilder: darkModeTileBuilder,
+                  tileBuilder: _darkModeTileBuilder,
                 ),
                 MarkerLayer(markers: [
                   Marker(
@@ -61,21 +62,18 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class Location {
-  double? latitude;
-  double? longitude;
-
-  Future<void> getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-              desiredAccuracy: LocationAccuracy.high,
-              forceAndroidLocationManager: true)
-          .timeout(Duration(seconds: 10));
-
-      latitude = position.latitude;
-      longitude = position.longitude;
-    } catch (e) {
-      print(e);
-    }
-  }
+Widget _darkModeTileBuilder(
+  BuildContext context,
+  Widget tileWidget,
+  TileImage tile,
+) {
+  return ColorFiltered(
+    colorFilter: const ColorFilter.matrix(<double>[
+      -0.2126, -0.7152, -0.0722, 0, 255, // Red channel
+      -0.2126, -0.7152, -0.0722, 0, 255, // Green channel
+      -0.2126, -0.7152, -0.0722, 0, 255, // Blue channel
+      0, 0, 0, 1, 0, // Alpha channel
+    ]),
+    child: tileWidget,
+  );
 }
