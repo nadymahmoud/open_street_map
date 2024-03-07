@@ -21,10 +21,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: Stack(children: [
           FlutterMap(
               options: MapOptions(
+                minZoom: 3,
                 onTap: (tapPosition, p) async {
                   setState(() {
                     point = p;
@@ -38,6 +41,7 @@ class _MyAppState extends State<MyApp> {
                 TileLayer(
                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                   userAgentPackageName: 'com.example.app',
+                  tileBuilder: darkModeTileBuilder,
                 ),
                 MarkerLayer(markers: [
                   Marker(
