@@ -16,8 +16,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  LatLng point = LatLng(40.2085, -3.713);
-  var location = [];
+  LatLng point = LatLng(40.193911, -3.684053);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
                   });
                   print(p);
                 },
-                initialCenter: LatLng(40.2085, -3.713),
+                initialCenter: LatLng(40.193911, -3.684053),
                 initialZoom: 14,
               ),
               children: [
@@ -50,11 +50,20 @@ class _MyAppState extends State<MyApp> {
                       height: 100,
                       point: point,
                       child: Icon(
-                        Icons.location_on,
-                        color: Colors.red,
-                        size: 40,
+                        Icons.circle,
+                        color: Colors.blue,
+                        size: 20,
                       )),
                 ]),
+                CircleLayer(circles: [
+                  CircleMarker(
+                      point: point,
+                      color: Colors.blue.withOpacity(0.3),
+                      borderStrokeWidth: .5,
+                      borderColor: Colors.blue,
+                      radius: 20 //radius
+                      )
+                ])
               ])
         ]),
       ),
