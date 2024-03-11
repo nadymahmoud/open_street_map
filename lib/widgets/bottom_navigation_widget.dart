@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:open_street_map/home/add_view.dart';
+import 'package:open_street_map/home/ai_view.dart';
+import 'package:open_street_map/home/home_view.dart';
 import 'package:open_street_map/home/open_street_map_home.dart';
+import 'package:open_street_map/home/profile_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 PersistentTabController _controller = PersistentTabController();
@@ -24,11 +28,11 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
 List<Widget> _buildScreens() {
   return [
+    HomeView(),
     OpenStreetMapHome(),
-    OpenStreetMapHome(),
-    OpenStreetMapHome(),
-    OpenStreetMapHome(),
-    OpenStreetMapHome(),
+    AIView(),
+    AddView(),
+    ProfileView(),
   ];
 }
 

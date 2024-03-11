@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:open_street_map/function/dark_mode_map_function.dart';
+import 'package:open_street_map/function/get_marker.dart';
 import 'package:open_street_map/widgets/bottom_card_widget.dart';
 import 'package:open_street_map/widgets/header_widget.dart';
 
@@ -23,13 +24,13 @@ class _OpenStreetMapHomeState extends State<OpenStreetMapHome> {
             options: MapOptions(
               minZoom: 3,
               onTap: (tapPosition, p) async {
-                setState(() {
-                  point = p;
-                });
+                // setState(() {
+                //   point = p;
+                // });
                 print(p);
               },
               initialCenter: LatLng(40.193911, -3.684053),
-              initialZoom: 14,
+              initialZoom: 15,
             ),
             children: [
               TileLayer(
@@ -48,14 +49,25 @@ class _OpenStreetMapHomeState extends State<OpenStreetMapHome> {
                       size: 20,
                     )),
                 Marker(
-                    width: 100,
-                    height: 100,
+                    height: 40,
+                    width: 40,
                     point: LatLng(40.195056, -3.68582),
-                    child: Icon(
-                      Icons.location_on,
-                      color: Colors.white,
-                      size: 40,
-                    )),
+                    child: getMarker('assests/images/profile.jpg')),
+                Marker(
+                    height: 40,
+                    width: 40,
+                    point: LatLng(40.202117, -3.686801),
+                    child: getMarker('assests/images/profile1.jpg')),
+                Marker(
+                    height: 40,
+                    width: 40,
+                    point: LatLng(40.191674, -3.68582),
+                    child: getMarker('assests/images/profile2.jpg')),
+                Marker(
+                    height: 40,
+                    width: 40,
+                    point: LatLng(40.198089, -3.679824),
+                    child: getMarker('assests/images/profile3.jpg')),
               ]),
               CircleLayer(circles: [
                 CircleMarker(
